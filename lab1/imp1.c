@@ -2,103 +2,142 @@
 // Created by ksandr on 14.02.2020.
 //
 #include <stdio.h>
+#include <openmpi/mpi.h>
 #include <stdlib.h>
 #include <math.h>
-#define N  1000
-#define t 10e-5
-#define e 10e-8
-///#define _ALLOCATION_LIMIT 4
-int __allocs = 0;
 
-static void *my_malloc(size_t size) {
-#ifdef _ALLOCATION_LIMIT
-    if (__allocs > _ALLOCATION_LIMIT) return NULL;
-#endif
-    __allocs++;
-    return malloc(size);
-}
+#define N 10000
+#define t 10e-6
+#define e 10e-9
+#define length_tag 42
+#define x_tag 43
 
-static void my_free(void *ptr) {
-    __allocs--;
-    free(ptr);
-}
-
-#define malloc my_malloc
-#define free my_free
-void my_exit(int err) {
-    fprintf(stderr, "Allocation balance %d %s\n", __allocs, __allocs ? "- Memory leaks occur!!!" : "is ok");
-    exit(err);
-}
-#define exit my_exit
+int main(int argc, char **argv) {
 
 
-double abs_vector(const double *vector){
-    double vector_size = 0;
-    for(size_t i = 0;i < N;++i){
-        vector_size += vector[i]*vector[i];
-    }
-    return sqrt(vector_size);
-}
+    int rank, world_rank;
+    double start;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &world_rank);
+    int multiple_processes = world_rank - (N % world_rank); /// число процессов в которых кратное N  число строк
 
-
-void matrix_vector_mult( double * matrix,  double * vector, double*res){
-
-    for(size_t i = 0;i < N;++i) {
-        for (size_t j = 0; j < N; ++j) {
-            res[i] += matrix[i + N * j] * vector[j];
+    int *lines_counter = (int *) malloc(sizeof(int) * world_rank);
+    for (int i = 0; i < world_rank; ++i) {
+        if (i < multiple_processes) {
+            lines_counter[i] = N / world_rank;
+        } else {
+            lines_counter[i] = N / world_rank + 1;
         }
+
     }
 
-}
 
-
-void scalar_mult_vector( double * vector, double scalar, double * res){
-    for(size_t i = 0; i < N;++i){
-        res[i] = vector[i] * scalar;
-    }
-
-}
-void vector_sub(const double *A, const double *B,double *res){
-    for(size_t i = 0;i < N;++i){
-        res[i] = A[i] - B[i];
-    }
-}
-int main() {
-    double *A = (double *) malloc(sizeof(double) * N * N);
+    double *matrix = (double *) malloc(N * lines_counter[rank] * sizeof(double));
+    double *x = (double *) malloc(sizeof(double) * N);
     double *b = (double *) malloc(sizeof(double) * N);
-    double *res = (double *) malloc(sizeof(double) * N);
-    for (int i = 0; i < N; ++i) {
-        b[i] = N + 1;
-        res[i] = 0;
+    double *part_x = (double *) malloc(sizeof(double) * (lines_counter[rank]));
+    int skip_lines = 0;
+    for (int i = 0; i < rank; ++i) {
+        skip_lines += lines_counter[i];
+    }
+    for (int i = 0; i < lines_counter[rank]; ++i) {
         for (int j = 0; j < N; ++j) {
-            if (i == j) {
-                A[i + N * j] = 2.0;
+            if (i + skip_lines == j) {
+                matrix[i * N + j] = 2;
+
             } else {
-                A[i + N * j] = 1.0;
+                matrix[i * N + j] = 1;
 
             }
+
         }
     }
-    double *aux_vector = (double *) malloc(sizeof(double) * N); ///Ax^n - b
-    while (1) {
-        matrix_vector_mult(A, res, aux_vector); ///Ax^n
-        vector_sub(aux_vector, b, aux_vector); ///Ax^n - b
-        if (abs_vector(aux_vector) < e) {
-            break;
-        }
-        scalar_mult_vector(aux_vector, t, aux_vector);
-        vector_sub(res, aux_vector, res);
 
 
-    }
+    double length_b = 0;
     for (int i = 0; i < N; ++i) {
-        printf("%f \t", res[i]);
+        x[i] = 0;
+        b[i] = N + 1;
+        length_b += b[i] * b[i];
     }
-    printf("\n\t");
+    for (int i = 0; i < lines_counter[rank]; ++i) {
+        part_x[i] = 0;
+    }
 
+
+    short is_end = 0;
+    if(rank == 0){
+        start = MPI_Wtime();
+    }
+    while (!is_end) {
+        double part_of_length = 0;
+        for (int i = 0; i < lines_counter[rank]; ++i) {
+            double aux_sum = 0; //// string_matrix * vector = 1 number ( this is)
+            for (int j = 0; j < N; ++j) {
+                aux_sum += matrix[i * N + j] * x[j];
+            }
+            aux_sum -= b[i];
+
+            part_x[i] = x[skip_lines + i] - t * (aux_sum);
+            part_of_length += aux_sum * aux_sum; ///  length of Ax^n - b
+
+
+        }
+        if (rank != 0) {
+            MPI_Send(part_x, lines_counter[rank], MPI_DOUBLE, 0, x_tag, MPI_COMM_WORLD);
+            MPI_Send(&part_of_length, 1, MPI_DOUBLE, 0, length_tag, MPI_COMM_WORLD);
+
+        } else {
+            double length = part_of_length;
+            for (int i = 0; i < lines_counter[0]; ++i) {
+                x[i] = part_x[i];
+            }
+            int current_line = lines_counter[0];
+            for (int i = 1; i < world_rank; ++i) {
+
+
+                MPI_Recv(&x[current_line], lines_counter[i], MPI_DOUBLE, i, x_tag, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
+                current_line += lines_counter[i];
+                double r_length = 0;
+                MPI_Recv(&r_length, 1, MPI_DOUBLE, i, length_tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                length += r_length;
+            }
+
+            if ((sqrt(length) / sqrt(length_b)) < e) {
+                is_end = 1;
+            }
+
+
+        }
+        MPI_Bcast(&is_end, 1, MPI_SHORT, 0, MPI_COMM_WORLD);
+        MPI_Bcast(x, N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    }
+
+    if (rank == 0) {
+
+        double time = MPI_Wtime() - start;
+        /*
+        for (int j = 0; j < N; ++j) {
+            printf("%f ", x[j]);
+        }
+        printf("\n");
+         */
+        printf("time %f in %d processes",time,world_rank);
+    }
+
+
+    free(lines_counter);
+    free(part_x);
+    free(matrix);
+    free(x);
     free(b);
-    free(A);
-    free(res);
-    free(aux_vector);
-    exit(0);
+    MPI_Finalize();
+
+
+    return 0;
+
 }
+
+

@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/with_parallel_1.dir/imp1.c.o  -o with_parallel_1 -lm 
+/usr/bin/cc -g   CMakeFiles/with_parallel_1.dir/imp1.c.o  -o with_parallel_1 -lmpi -lm 

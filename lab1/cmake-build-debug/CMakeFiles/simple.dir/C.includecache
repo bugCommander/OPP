@@ -6,11 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/ksandr/prog/opp/OPP/lab1/simple.c
-stdio.h
--
-stdlib.h
--
-math.h
--
-

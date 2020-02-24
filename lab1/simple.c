@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 #define N  1000
 #define t 10e-5
 #define e 10e-8
@@ -60,7 +61,8 @@ void vector_sub(const double *A, const double *B,double *res){
         res[i] = A[i] - B[i];
     }
 }
-int main() {
+int main(int argc, char **argv) {
+    ///MPI_Init(&argc,&argv);
     double *A = (double *)malloc(sizeof(double )*N*N);
     double *b = (double *)malloc(sizeof(double)*N);
     double *res = (double*) malloc(sizeof(double) * N);

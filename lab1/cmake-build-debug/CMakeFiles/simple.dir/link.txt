@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/simple.dir/simple.c.o  -o simple -lm 
+/usr/bin/cc -g   CMakeFiles/simple.dir/simple.c.o  -o simple -lmpi -lm 

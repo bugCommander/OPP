@@ -9,6 +9,8 @@
 /home/ksandr/prog/opp/OPP/lab1/imp1.c
 stdio.h
 -
+openmpi/mpi.h
+-
 stdlib.h
 -
 math.h
