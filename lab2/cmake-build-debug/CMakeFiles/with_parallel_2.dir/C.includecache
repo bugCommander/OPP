@@ -6,13 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/ksandr/prog/opp/OPP/lab1/simple.c
+/home/ksandr/prog/opp/OPP/lab2/imp2.c
+omp.h
+-
+stdlib.h
+-
+stdio.h
+-
 stdio.h
 -
 stdlib.h
 -
 math.h
--
-sys/time.h
 -
 

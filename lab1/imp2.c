@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N 4
+#define N 10000
 #define t 10e-6
 #define e 10e-9
 #define length_tag 42
@@ -22,9 +22,9 @@ int main(int argc, char **argv) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_rank);
     int multiple_processes = world_rank - (N % world_rank); /// число процессов в которых кратное N  число строк
-
+    int i,j;
     int *lines_counter = (int *) malloc(sizeof(int) * world_rank);
-    for (int i = 0; i < world_rank; ++i) {
+    for ( i = 0; i < world_rank; ++i) {
         if (i < multiple_processes) {
             lines_counter[i] = N / world_rank;
         } else {
@@ -36,11 +36,11 @@ int main(int argc, char **argv) {
 
     double *matrix = (double *) malloc(N * lines_counter[rank] * sizeof(double));
     int skip_lines = 0;
-    for (int i = 0; i < rank; ++i) {
+    for ( i = 0; i < rank; ++i) {
         skip_lines += lines_counter[i];
     }
-    for (int i = 0; i < lines_counter[rank]; ++i) {
-        for (int j = 0; j < N; ++j) {
+    for ( i = 0; i < lines_counter[rank]; ++i) {
+        for ( j = 0; j < N; ++j) {
             if (i + skip_lines == j) {
                 matrix[i * N + j] = 2;
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
     double *part_x = (double *) malloc(sizeof(double) * (lines_counter[rank]));
     double *part_b = (double *) malloc(sizeof(double) * lines_counter[rank]);
     double part_b_length = 0;
-    for (int i = 0; i < lines_counter[rank]; ++i) {
+    for ( i = 0; i < lines_counter[rank]; ++i) {
         part_x[i] = 0;
         part_b[i] = N + 1;
         part_b_length += (part_b[i] * part_b[i]);
@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
 
     double *x = (double *) malloc(sizeof(double) * N);
 
-    for (int i = 0; i < world_rank; ++i) {
+    for ( i = 0; i < world_rank; ++i) {
         if (i != rank) {
             MPI_Send(part_x, lines_counter[rank], MPI_DOUBLE, i, x_tag, MPI_COMM_WORLD);
         }
@@ -82,10 +82,10 @@ int main(int argc, char **argv) {
 
     while (!is_end) {
         int current_line = 0;
-        for(int i = 0; i < lines_counter[rank];++i){
+        for( i = 0; i < lines_counter[rank];++i){
             x[skip_lines+i] = part_x[i];
         }
-        for (int i = 0; i < world_rank; ++i) {
+        for ( i = 0; i < world_rank; ++i) {
             if (i != rank) {
 
                 MPI_Recv(&x[current_line], lines_counter[i], MPI_DOUBLE, i, x_tag, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
@@ -95,9 +95,9 @@ int main(int argc, char **argv) {
         }
 
         double part_of_length = 0;
-        for (int i = 0; i < lines_counter[rank]; ++i) {
+        for ( i = 0; i < lines_counter[rank]; ++i) {
             double aux_sum = 0; //// string_matrix * vector = 1 number ( this is)
-            for (int j = 0; j < N; ++j) {
+            for ( j = 0; j < N; ++j) {
                 aux_sum += matrix[i * N + j] * x[j];
             }
             aux_sum -= part_b[i];
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
         }
 
 
-        for (int i = 0; i < world_rank; ++i) {
+        for ( i = 0; i < world_rank; ++i) {
             if (i != rank) {
                 MPI_Send(part_x, lines_counter[rank], MPI_DOUBLE, i, x_tag, MPI_COMM_WORLD);
             }
@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
         if (rank == 0) {
             double length = part_of_length;
             double length_b = part_b_length;
-            for (int i = 1; i < world_rank; ++i) {
+            for ( i = 1; i < world_rank; ++i) {
                 double r_length = 0;
                 MPI_Recv(&r_length, 1, MPI_DOUBLE, i, length_tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 length += r_length;
@@ -147,13 +147,15 @@ int main(int argc, char **argv) {
     if (rank == 0) {
 
         double time = MPI_Wtime() - start;
-
+/*
         for (int j = 0; j < N; ++j) {
             printf("%f ", x[j]);
         }
+        */
         printf("\n");
 
         printf("time %f in %d processes", time, world_rank);
+
     }
 
 

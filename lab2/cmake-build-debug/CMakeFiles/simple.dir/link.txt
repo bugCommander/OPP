@@ -1,0 +1,1 @@
+/usr/bin/cc  -std=c11 -fopenmp -g   CMakeFiles/simple.dir/simple.c.o  -o simple -lmpi -lm 
