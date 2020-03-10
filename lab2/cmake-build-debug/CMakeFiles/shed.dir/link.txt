@@ -1,0 +1,1 @@
+/usr/bin/cc  -std=c11 -fopenmp -g   CMakeFiles/shed.dir/shedule.c.o  -o shed -lm 

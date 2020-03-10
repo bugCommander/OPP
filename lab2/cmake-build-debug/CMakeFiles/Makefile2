@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/shed.dir/all
 all: CMakeFiles/with_parallel_2.dir/all
 all: CMakeFiles/simple.dir/all
 all: CMakeFiles/with_parallel_1.dir/all
@@ -60,6 +61,7 @@ all: CMakeFiles/with_parallel_1.dir/all
 .PHONY : all
 
 # The main recursive "clean" target.
+clean: CMakeFiles/shed.dir/clean
 clean: CMakeFiles/with_parallel_2.dir/clean
 clean: CMakeFiles/simple.dir/clean
 clean: CMakeFiles/with_parallel_1.dir/clean
@@ -72,13 +74,40 @@ preinstall:
 .PHONY : preinstall
 
 #=============================================================================
+# Target rules for target CMakeFiles/shed.dir
+
+# All Build rule for target.
+CMakeFiles/shed.dir/all:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/depend
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target shed"
+.PHONY : CMakeFiles/shed.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/shed.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/shed.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/shed.dir/rule
+
+# Convenience name for target.
+shed: CMakeFiles/shed.dir/rule
+
+.PHONY : shed
+
+# clean rule for target.
+CMakeFiles/shed.dir/clean:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/clean
+.PHONY : CMakeFiles/shed.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/with_parallel_2.dir
 
 # All Build rule for target.
 CMakeFiles/with_parallel_2.dir/all:
 	$(MAKE) -f CMakeFiles/with_parallel_2.dir/build.make CMakeFiles/with_parallel_2.dir/depend
 	$(MAKE) -f CMakeFiles/with_parallel_2.dir/build.make CMakeFiles/with_parallel_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target with_parallel_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target with_parallel_2"
 .PHONY : CMakeFiles/with_parallel_2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -105,7 +134,7 @@ CMakeFiles/with_parallel_2.dir/clean:
 CMakeFiles/simple.dir/all:
 	$(MAKE) -f CMakeFiles/simple.dir/build.make CMakeFiles/simple.dir/depend
 	$(MAKE) -f CMakeFiles/simple.dir/build.make CMakeFiles/simple.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target simple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target simple"
 .PHONY : CMakeFiles/simple.dir/all
 
 # Build rule for subdir invocation for target.
@@ -132,7 +161,7 @@ CMakeFiles/simple.dir/clean:
 CMakeFiles/with_parallel_1.dir/all:
 	$(MAKE) -f CMakeFiles/with_parallel_1.dir/build.make CMakeFiles/with_parallel_1.dir/depend
 	$(MAKE) -f CMakeFiles/with_parallel_1.dir/build.make CMakeFiles/with_parallel_1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target with_parallel_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target with_parallel_1"
 .PHONY : CMakeFiles/with_parallel_1.dir/all
 
 # Build rule for subdir invocation for target.

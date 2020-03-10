@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  1000
+#define N  100
 #define t 10e-5
 #define e 10e-8
 double abs_vector(const double *vector){

@@ -1,5 +1,6 @@
 /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/shed.dir
 /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/with_parallel_2.dir
 /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/simple.dir
 /home/ksandr/prog/opp/OPP/lab2/cmake-build-debug/CMakeFiles/with_parallel_1.dir

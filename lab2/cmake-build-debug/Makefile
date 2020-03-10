@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named shed
+
+# Build rule for target.
+shed: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 shed
+.PHONY : shed
+
+# fast build rule for target.
+shed/fast:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/build
+.PHONY : shed/fast
+
+#=============================================================================
 # Target rules for targets named with_parallel_2
 
 # Build rule for target.
@@ -203,6 +216,33 @@ imp2.c.s:
 	$(MAKE) -f CMakeFiles/with_parallel_2.dir/build.make CMakeFiles/with_parallel_2.dir/imp2.c.s
 .PHONY : imp2.c.s
 
+shedule.o: shedule.c.o
+
+.PHONY : shedule.o
+
+# target to build an object file
+shedule.c.o:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/shedule.c.o
+.PHONY : shedule.c.o
+
+shedule.i: shedule.c.i
+
+.PHONY : shedule.i
+
+# target to preprocess a source file
+shedule.c.i:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/shedule.c.i
+.PHONY : shedule.c.i
+
+shedule.s: shedule.c.s
+
+.PHONY : shedule.s
+
+# target to generate assembly for a file
+shedule.c.s:
+	$(MAKE) -f CMakeFiles/shed.dir/build.make CMakeFiles/shed.dir/shedule.c.s
+.PHONY : shedule.c.s
+
 simple.o: simple.c.o
 
 .PHONY : simple.o
@@ -238,6 +278,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... shed"
 	@echo "... with_parallel_2"
 	@echo "... simple"
 	@echo "... with_parallel_1"
@@ -247,6 +288,9 @@ help:
 	@echo "... imp2.o"
 	@echo "... imp2.i"
 	@echo "... imp2.s"
+	@echo "... shedule.o"
+	@echo "... shedule.i"
+	@echo "... shedule.s"
 	@echo "... simple.o"
 	@echo "... simple.i"
 	@echo "... simple.s"

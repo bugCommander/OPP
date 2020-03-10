@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  100
+#define N  1000
 #define t 10e-6
 #define e 10e-9
 
@@ -35,39 +35,46 @@ int main(int argc, char **argv) {
     }
     double b_length = 0;
     double t1 = omp_get_wtime();
-#pragma omp parallel for reduction(+:b_length)
-    for (i = 0; i < N; ++i) {
-        b_length += b[i] * b[i];
-    }
-    b_length = sqrt(b_length);
-
 #pragma omp parallel
-    while (1) {
-        double result_length = 0;
+    {
+#pragma omp parallel for reduction(+:b_length)
+        for (i = 0; i < N; ++i) {
+            b_length += b[i] * b[i];
+        }
+#pragma omp single
+        {
+            b_length = sqrt(b_length);
+        }
+int work = 1;
+        while (work) {
+            double result_length = 0;
+
 #pragma omp parallel for reduction(+:result_length)
+            for (int i = 0; i < N; ++i) {
+                double aux_sum = 0;
+                for (int j = 0; j < N; ++j) {
+                    aux_sum += matrix[i * N + j] * x[j]; //Ax
+                }
+                aux_sum = aux_sum - b[i]; //Ax - b
+                tmp_x[i] = x[i] - aux_sum * t; //x^n=x-t(Ax-b)
 
-
-        for (int i = 0; i < N; ++i) {
-            double aux_sum = 0;
-            for (int j = 0; j < N; ++j) {
-                aux_sum += matrix[i * N + j] * x[j]; //Ax
+                result_length += aux_sum * aux_sum;
             }
-            aux_sum = aux_sum - b[i]; //Ax - b
-            tmp_x[i] = x[i] - aux_sum * t; //x^n=x-t(Ax-b)
+#pragma omp single
+            {
+                for (int i = 0; i < N; ++i) {
+                    x[i] = tmp_x[i];
+                }
+            }
 
-            result_length += aux_sum * aux_sum;
+                result_length = sqrt(result_length);
+                if (result_length / b_length < e) {
+                    work = 0;
+                }
+
+
+
         }
-
-        for (int i = 0; i < N; ++i) {
-            x[i] = tmp_x[i];
-        }
-
-
-        result_length = sqrt(result_length);
-        if(result_length/b_length <e){
-            break;
-        }
-
     }
     double t2 = omp_get_wtime() - t1;
 
