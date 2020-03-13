@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 
             result_length += aux_sum * aux_sum;
         }
-#pragma omp parallel for
+#pragma omp  single
         for (int i = 0; i < N; ++i) {
             x[i] = tmp_x[i];
         }

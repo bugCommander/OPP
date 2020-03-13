@@ -8,12 +8,19 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  1000
+#define N  100
 #define t 10e-6
 #define e 10e-9
 
 int main(int argc, char **argv) {
-    omp_set_num_threads(4);
+    ///omp_set_num_threads(4);
+    if(argc != 2){
+        printf("wrong param");
+        exit(0);
+    }
+
+    /// omp_set_num_threads(16);
+    omp_set_num_threads(atoi(argv[1]));
 
     double *matrix = (double *) malloc(sizeof(double) * N * N);
     double *b = (double *) malloc(sizeof(double) * N);
@@ -35,23 +42,25 @@ int main(int argc, char **argv) {
     }
     double b_length = 0;
     double t1 = omp_get_wtime();
-#pragma omp parallel
     {
 #pragma omp parallel for reduction(+:b_length)
         for (i = 0; i < N; ++i) {
             b_length += b[i] * b[i];
         }
-#pragma omp single
-        {
+
             b_length = sqrt(b_length);
-        }
+
+
 int work = 1;
+#pragma omp parallel
+
         while (work) {
             double result_length = 0;
 
 #pragma omp parallel for reduction(+:result_length)
             for (int i = 0; i < N; ++i) {
                 double aux_sum = 0;
+
                 for (int j = 0; j < N; ++j) {
                     aux_sum += matrix[i * N + j] * x[j]; //Ax
                 }
@@ -67,7 +76,9 @@ int work = 1;
                 }
             }
 
+
                 result_length = sqrt(result_length);
+
                 if (result_length / b_length < e) {
                     work = 0;
                 }
