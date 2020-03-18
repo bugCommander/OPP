@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  1000
+#define N  10000
 #define t 10e-6
 #define e 10e-9
 

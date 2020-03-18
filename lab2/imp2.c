@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  100
+#define N  10000
 #define t 10e-6
 #define e 10e-9
 
@@ -42,17 +42,21 @@ int main(int argc, char **argv) {
     }
     double b_length = 0;
     double t1 = omp_get_wtime();
+#pragma omp parallel
+
     {
 #pragma omp parallel for reduction(+:b_length)
         for (i = 0; i < N; ++i) {
             b_length += b[i] * b[i];
         }
+#pragma omp single
+{
 
-            b_length = sqrt(b_length);
+        b_length = sqrt(b_length);
+        }
 
 
 int work = 1;
-#pragma omp parallel
 
         while (work) {
             double result_length = 0;
@@ -88,10 +92,11 @@ int work = 1;
         }
     }
     double t2 = omp_get_wtime() - t1;
-
+/*
     for (int i = 0; i < N; ++i) {
         printf("%f \t", x[i]);
     }
+    */
     printf("\n\t");
     printf("%f", t2);
     free(tmp_x);

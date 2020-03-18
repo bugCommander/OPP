@@ -8,20 +8,20 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N  100
+#define N  1000
 #define t 10e-6
 #define e 10e-9
 #define type guided ////static  or dynamic
 int main(int argc, char **argv) {
-/*
+
     if(argc != 2){
         printf("wrong param");
         exit(0);
     }
-    */
 
-     omp_set_num_threads(2);
-   /// omp_set_num_threads(atoi(argv[1]));
+
+    /// omp_set_num_threads(2);
+    omp_set_num_threads(atoi(argv[1]));
 
     double *matrix = (double *) malloc(sizeof(double) * N * N);
     double *b = (double *) malloc(sizeof(double) * N);
@@ -79,9 +79,6 @@ int main(int argc, char **argv) {
     }
     double t2 = omp_get_wtime() - t1;
 
-    for (int i = 0; i < N; ++i) {
-        printf("%f \t", x[i]);
-    }
 
     printf("\n\t");
     printf("%f\n", t2);
