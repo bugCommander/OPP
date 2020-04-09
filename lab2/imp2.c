@@ -42,26 +42,27 @@ int main(int argc, char **argv) {
     }
     double b_length = 0;
     double t1 = omp_get_wtime();
+
 #pragma omp parallel
 
     {
-#pragma omp parallel for reduction(+:b_length)
+///#pragma omp  for reduction(+:b_length)
         for (i = 0; i < N; ++i) {
             b_length += b[i] * b[i];
         }
-#pragma omp single
-{
 
-        b_length = sqrt(b_length);
-        }
 
 
 int work = 1;
+#pragma omp single
+        {
+            b_length = sqrt(b_length);
+        }
 
         while (work) {
             double result_length = 0;
 
-#pragma omp parallel for reduction(+:result_length)
+///#pragma omp parallel for reduction(+:result_length)
             for (int i = 0; i < N; ++i) {
                 double aux_sum = 0;
 
@@ -97,6 +98,7 @@ int work = 1;
         printf("%f \t", x[i]);
     }
     */
+
     printf("\n\t");
     printf("%f", t2);
     free(tmp_x);
