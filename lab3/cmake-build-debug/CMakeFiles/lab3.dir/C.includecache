@@ -9,8 +9,8 @@
 /home/ksandr/prog/opp/OPP/lab3/main.c
 stdio.h
 -
-openmpi/mpi.h
--
 stdlib.h
+-
+openmpi/mpi.h
 -
 
