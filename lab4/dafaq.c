@@ -195,6 +195,11 @@ int main(int argc, char **argv) {
     if(!flag) {
         MPI_Gather(matrix_part, N * N * proc_size, MPI_DOUBLE, res, N * N * proc_size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
         //// builging  function field
+
+    }
+    if(!flag && rank == 0){
+        free(res);
+
     }
     free(aux_matrix_part);
     free(matrix_part);
