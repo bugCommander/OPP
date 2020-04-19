@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ksandr/prog/opp/OPP/lab4/dafaq.c
+stdlib.h
+-
+openmpi/mpi.h
+-
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+math.h
+-
+

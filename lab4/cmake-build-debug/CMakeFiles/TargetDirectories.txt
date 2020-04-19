@@ -1,0 +1,4 @@
+/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles/non_par.dir
+/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles/par.dir

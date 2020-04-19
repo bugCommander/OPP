@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/ffs.dir/fixed.c.o  -o ffs -lmpi 

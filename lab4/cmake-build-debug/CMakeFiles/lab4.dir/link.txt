@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/lab4.dir/non_par.c.o CMakeFiles/lab4.dir/par.c.o  -o lab4 

@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/par.dir/par.c.o  -o par -lmpi 

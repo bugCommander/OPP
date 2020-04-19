@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/non_par.dir/non_par.c.o  -o non_par 
