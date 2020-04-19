@@ -124,17 +124,44 @@ non_par/fast:
 .PHONY : non_par/fast
 
 #=============================================================================
-# Target rules for targets named par
+# Target rules for targets named dafaq
 
 # Build rule for target.
-par: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 par
-.PHONY : par
+dafaq: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dafaq
+.PHONY : dafaq
 
 # fast build rule for target.
-par/fast:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/build
-.PHONY : par/fast
+dafaq/fast:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/build
+.PHONY : dafaq/fast
+
+dafaq.o: dafaq.c.o
+
+.PHONY : dafaq.o
+
+# target to build an object file
+dafaq.c.o:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/dafaq.c.o
+.PHONY : dafaq.c.o
+
+dafaq.i: dafaq.c.i
+
+.PHONY : dafaq.i
+
+# target to preprocess a source file
+dafaq.c.i:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/dafaq.c.i
+.PHONY : dafaq.c.i
+
+dafaq.s: dafaq.c.s
+
+.PHONY : dafaq.s
+
+# target to generate assembly for a file
+dafaq.c.s:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/dafaq.c.s
+.PHONY : dafaq.c.s
 
 non_par.o: non_par.c.o
 
@@ -163,33 +190,6 @@ non_par.c.s:
 	$(MAKE) -f CMakeFiles/non_par.dir/build.make CMakeFiles/non_par.dir/non_par.c.s
 .PHONY : non_par.c.s
 
-par.o: par.c.o
-
-.PHONY : par.o
-
-# target to build an object file
-par.c.o:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/par.c.o
-.PHONY : par.c.o
-
-par.i: par.c.i
-
-.PHONY : par.i
-
-# target to preprocess a source file
-par.c.i:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/par.c.i
-.PHONY : par.c.i
-
-par.s: par.c.s
-
-.PHONY : par.s
-
-# target to generate assembly for a file
-par.c.s:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/par.c.s
-.PHONY : par.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -199,13 +199,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... non_par"
-	@echo "... par"
+	@echo "... dafaq"
+	@echo "... dafaq.o"
+	@echo "... dafaq.i"
+	@echo "... dafaq.s"
 	@echo "... non_par.o"
 	@echo "... non_par.i"
 	@echo "... non_par.s"
-	@echo "... par.o"
-	@echo "... par.i"
-	@echo "... par.s"
 .PHONY : help
 
 

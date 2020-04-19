@@ -4,6 +4,6 @@ project(lab4 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(non_par non_par.c)
-add_executable(par par.c)
-target_link_libraries(par mpi)
+add_executable(dafaq dafaq.c)
+target_link_libraries(dafaq mpi)
 

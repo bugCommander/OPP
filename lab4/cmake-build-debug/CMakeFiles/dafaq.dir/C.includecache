@@ -7,15 +7,13 @@
 #IncludeRegexTransform: 
 
 /home/ksandr/prog/opp/OPP/lab4/dafaq.c
+stdio.h
+-
 stdlib.h
 -
 openmpi/mpi.h
 -
-stdlib.h
--
 string.h
--
-stdio.h
 -
 math.h
 -

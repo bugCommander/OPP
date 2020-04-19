@@ -77,8 +77,8 @@
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="par">
-				<Option output="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/par" prefix_auto="0" extension_auto="0"/>
+			<Target title="dafaq">
+				<Option output="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/dafaq" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -91,14 +91,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 par"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 dafaq"/>
 					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="par/fast">
-				<Option output="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/par" prefix_auto="0" extension_auto="0"/>
+			<Target title="dafaq/fast">
+				<Option output="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/dafaq" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -111,18 +111,18 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 par/fast"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 dafaq/fast"/>
 					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ksandr/prog/opp/OPP/lab4/dafaq.c">
+			<Option target="dafaq"/>
+		</Unit>
 		<Unit filename="/home/ksandr/prog/opp/OPP/lab4/non_par.c">
 			<Option target="non_par"/>
-		</Unit>
-		<Unit filename="/home/ksandr/prog/opp/OPP/lab4/par.c">
-			<Option target="par"/>
 		</Unit>
 		<Unit filename="/home/ksandr/prog/opp/OPP/lab4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

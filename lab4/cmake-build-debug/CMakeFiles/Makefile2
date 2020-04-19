@@ -54,13 +54,13 @@ CMAKE_BINARY_DIR = /home/ksandr/prog/opp/OPP/lab4/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/non_par.dir/all
-all: CMakeFiles/par.dir/all
+all: CMakeFiles/dafaq.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/non_par.dir/clean
-clean: CMakeFiles/par.dir/clean
+clean: CMakeFiles/dafaq.dir/clean
 
 .PHONY : clean
 
@@ -76,7 +76,7 @@ preinstall:
 CMakeFiles/non_par.dir/all:
 	$(MAKE) -f CMakeFiles/non_par.dir/build.make CMakeFiles/non_par.dir/depend
 	$(MAKE) -f CMakeFiles/non_par.dir/build.make CMakeFiles/non_par.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target non_par"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target non_par"
 .PHONY : CMakeFiles/non_par.dir/all
 
 # Build rule for subdir invocation for target.
@@ -97,31 +97,31 @@ CMakeFiles/non_par.dir/clean:
 .PHONY : CMakeFiles/non_par.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/par.dir
+# Target rules for target CMakeFiles/dafaq.dir
 
 # All Build rule for target.
-CMakeFiles/par.dir/all:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/depend
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target par"
-.PHONY : CMakeFiles/par.dir/all
+CMakeFiles/dafaq.dir/all:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/depend
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target dafaq"
+.PHONY : CMakeFiles/dafaq.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/par.dir/rule: cmake_check_build_system
+CMakeFiles/dafaq.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/par.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/dafaq.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ksandr/prog/opp/OPP/lab4/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/par.dir/rule
+.PHONY : CMakeFiles/dafaq.dir/rule
 
 # Convenience name for target.
-par: CMakeFiles/par.dir/rule
+dafaq: CMakeFiles/dafaq.dir/rule
 
-.PHONY : par
+.PHONY : dafaq
 
 # clean rule for target.
-CMakeFiles/par.dir/clean:
-	$(MAKE) -f CMakeFiles/par.dir/build.make CMakeFiles/par.dir/clean
-.PHONY : CMakeFiles/par.dir/clean
+CMakeFiles/dafaq.dir/clean:
+	$(MAKE) -f CMakeFiles/dafaq.dir/build.make CMakeFiles/dafaq.dir/clean
+.PHONY : CMakeFiles/dafaq.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
