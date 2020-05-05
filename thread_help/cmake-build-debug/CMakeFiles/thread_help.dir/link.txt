@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/thread_help.dir/main.c.o CMakeFiles/thread_help.dir/threads.c.o CMakeFiles/thread_help.dir/inits.c.o  -o thread_help -lpthread -lmpi 

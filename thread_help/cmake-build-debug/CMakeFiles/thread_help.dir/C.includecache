@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ksandr/prog/opp/OPP/thread_help/inits.c
+inits.h
+/home/ksandr/prog/opp/OPP/thread_help/inits.h
+
+/home/ksandr/prog/opp/OPP/thread_help/inits.h
+stdio.h
+-
+mpi/mpi.h
+-
+pthread.h
+-
+stdlib.h
+-
+unistd.h
+-
+
+/home/ksandr/prog/opp/OPP/thread_help/main.c
+threads.h
+/home/ksandr/prog/opp/OPP/thread_help/threads.h
+
+/home/ksandr/prog/opp/OPP/thread_help/threads.c
+threads.h
+/home/ksandr/prog/opp/OPP/thread_help/threads.h
+
+/home/ksandr/prog/opp/OPP/thread_help/threads.h
+inits.h
+/home/ksandr/prog/opp/OPP/thread_help/inits.h
+

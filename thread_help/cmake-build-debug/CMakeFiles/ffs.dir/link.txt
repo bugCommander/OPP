@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/ffs.dir/ffs.c.o  -o ffs -lmpi -lpthread 
