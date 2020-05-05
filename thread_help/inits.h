@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define iters 4
+#define iters 3
 #define REQUEST_TAG 1
 #define ANSWER_TAG 2
 #define GOT_TASK 3

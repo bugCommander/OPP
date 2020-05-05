@@ -25,6 +25,8 @@ unistd.h
 /home/ksandr/prog/opp/OPP/thread_help/main.c
 threads.h
 /home/ksandr/prog/opp/OPP/thread_help/threads.h
+stddef.h
+/home/ksandr/prog/opp/OPP/thread_help/stddef.h
 
 /home/ksandr/prog/opp/OPP/thread_help/threads.c
 threads.h

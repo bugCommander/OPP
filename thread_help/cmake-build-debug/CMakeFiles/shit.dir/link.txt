@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/shit.dir/shit.c.o  -o shit -lmpi -lpthread 

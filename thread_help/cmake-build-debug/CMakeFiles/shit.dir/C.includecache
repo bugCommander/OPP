@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ksandr/prog/opp/OPP/thread_help/shit.c
+stdio.h
+-
+mpi/mpi.h
+-
+pthread.h
+-
+stdlib.h
+-
+unistd.h
+-
+
